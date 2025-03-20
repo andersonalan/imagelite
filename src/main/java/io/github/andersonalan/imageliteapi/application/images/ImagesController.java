@@ -25,7 +25,7 @@ public class ImagesController {
             @RequestParam("name") String name,
             @RequestParam("tags") List<String> tags
             ){
-        log.info("Received image: name: {}, size: {}", file.getName(), file.getSize());
+        log.info("Received image: name: {}, size: {}", file.getOriginalFilename(), file.getSize());
         log.info("Name defined for the image: {}", name);
         log.info("Tags: {}", tags);
         return ResponseEntity.ok().build();
