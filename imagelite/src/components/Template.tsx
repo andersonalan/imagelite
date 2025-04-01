@@ -7,13 +7,16 @@ export const Template: React.FC<TemplateProps> = (props: TemplateProps) => {
   return (
     <>
       <Header />
+      <div className="container mx-auto mt-8 px-4">
+        {props.children}
 
+      </div>
 
-      {props.children}
       <Footer />
     </>
   )
 }
+
 const Header: React.FC = () => {
   return (
     <header className="bg-indigo-950 text-white py-3">
