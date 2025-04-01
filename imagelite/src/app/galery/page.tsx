@@ -1,6 +1,10 @@
+import { Template } from '../../components/Template'
+
 export default function GaleryPage() {
   return (
-    <h1>Galeria</h1>
+    <Template>
+      <h1>Galeria</h1>
+    </Template>
   )
   
 }
