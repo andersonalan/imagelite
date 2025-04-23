@@ -1,6 +1,6 @@
 'use client'
 
-import { Template, ImageCards } from '@/components'
+import { Template, ImageCards, Button } from '@/components'
 import { Image } from '@/resources/image/image.resource';
 import { useImageService } from '@/resources/image/image.service'
 import { useState } from 'react'
@@ -51,9 +51,9 @@ export default function GalleryPage() {
             <option value="JPEG">JPEG</option>
             <option value="GIF">GIF</option>
           </select>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover: bg-blue-300" onClick={searchImages}>Search</button>
+          <Button style='bg-blue-500 hover: bg-blue-300' label='Search' onClick={searchImages}></Button>
           <Link href="/form">
-            <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover: bg-red-300" >Add new image</button>
+            <Button style='bg-red-500 hover: bg-red-300' label='Add new image'></Button>
           </Link>
         </div>
       </section>
