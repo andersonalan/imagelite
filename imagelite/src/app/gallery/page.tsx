@@ -1,9 +1,10 @@
 'use client'
 
 import { Template, ImageCards } from '@/components'
-import { useState } from 'react'
-import { useImageService } from '@/resources/image/image.service'
 import { Image } from '@/resources/image/image.resource';
+import { useImageService } from '@/resources/image/image.service'
+import { useState } from 'react'
+import Link from 'next/link';
 
 export default function GalleryPage() {
 
@@ -11,11 +12,13 @@ export default function GalleryPage() {
   const [images, setImages] = useState<Image[]>([])
   const [query, setQuery] = useState<string>('')
   const [extension, setExtension] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
 
   async function searchImages() {
-    console.log("valor digitado: ", query)
+    setLoading(true)
     const result = await useService.search(query, extension);
     setImages(result);
+    setLoading(false)
   }
 
   function renderImageCard(image: Image) {
@@ -25,6 +28,7 @@ export default function GalleryPage() {
         name={image.name}
         src={image.url}
         size={image.size}
+        extension={image.extension}
         uploadDate={image.uploadDate} />
     )
   }
@@ -34,7 +38,7 @@ export default function GalleryPage() {
   }
 
   return (
-    <Template>
+    <Template loading={loading}>
 
       <section className="flex flex-col items-center justify-center my-5">
         <div className="flex space-x-4">
@@ -47,8 +51,10 @@ export default function GalleryPage() {
             <option value="JPEG">JPEG</option>
             <option value="GIF">GIF</option>
           </select>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={searchImages}>Search</button>
-          <button className="bg-red-700 text-white px-4 py-2 rounded-lg">Add new image</button>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover: bg-blue-300" onClick={searchImages}>Search</button>
+          <Link href="/form">
+            <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover: bg-red-300" >Add new image</button>
+          </Link>
         </div>
       </section>
 

@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Postgre data ###
-/api/data
+./api/data/*
