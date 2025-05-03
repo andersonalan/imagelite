@@ -8,7 +8,7 @@ export const Template: React.FC<TemplateProps> = ({ children, loading = false }:
   return (
     <>
       <Header />
-      <div className={`${loading ? 'animate-pulse' : ''} container mx-auto mt-8 px-4`} >
+      <div className={`${loading ? 'animate-pulse' : ''} container mx-auto mt-8 px-4`}>
         <RenderIf condition={loading}>
           <div className="text-center">
             <Loading />
@@ -23,14 +23,16 @@ export const Template: React.FC<TemplateProps> = ({ children, loading = false }:
 }
 
 const Loading: React.FC = () => {
-  return (<> </>)
+  return (
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"
+    />)
 }
 
 const Header: React.FC = () => {
   return (
     <header className="bg-indigo-950 text-white py-3">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <h1 className="text-3x1 font-bold">Image Lite</h1>
+        <h1 className="text-3xl font-bold">Image Lite</h1>
       </div>
 
     </header>
@@ -53,9 +55,15 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-indigo-950 text-white py-4 mt-8">
       <div className="container mx-auto text-center">
-        Desenvolvido por Anderson Farias
+        <a
+          href="https://github.com/andersonalan/imagelite"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white hover:underline"
+        >
+          Desenvolvido por Anderson Farias
+        </a>
       </div>
-
     </footer>
   )
 }

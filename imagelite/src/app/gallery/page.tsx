@@ -42,7 +42,7 @@ export default function GalleryPage() {
 
       <section className="flex flex-col items-center justify-center my-5">
         <div className="flex space-x-4">
-          <InputText onChange={event => setQuery(event.target.value)} />
+          <InputText placeHolder='Type name or tag' onChange={event => setQuery(event.target.value)} />
           <select onChange={event => setExtension(event.target.value)}
             className="border px-4 py-2 rounded-lg text-gray-900">
             <option value="">All formats</option>
@@ -50,15 +50,15 @@ export default function GalleryPage() {
             <option value="JPEG">JPEG</option>
             <option value="GIF">GIF</option>
           </select>
-          <Button style='bg-blue-500 hover: bg-blue-300' label='Search' onClick={searchImages}></Button>
+          <Button style='bg-blue-500 hover:bg-blue-300' label='Search' onClick={searchImages}></Button>
           <Link href="/form">
-            <Button style='bg-red-500 hover: bg-red-300' label='Add new image'></Button>
+            <Button style='bg-red-500 hover:bg-red-300' label='Add new image'></Button>
           </Link>
         </div>
       </section>
 
 
-      <section className="grid grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           renderImageCards()
         }
