@@ -5,6 +5,7 @@ interface InputTextProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   placeHolder?: string;
   id?: string;
+  value?: string;
 }
 
 
