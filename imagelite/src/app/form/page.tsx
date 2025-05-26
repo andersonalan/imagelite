@@ -1,27 +1,25 @@
 'use client'
-import { InputText, Template, Button, RenderIf } from '@/components'
+import { InputText, Template, Button, RenderIf, useNotification } from '@/components'
 import { useImageService } from '@/resources/image/image.service'
-import Link from 'next/link';
 import { useFormik } from 'formik'
 import { useState } from 'react';
+import { FormProps, formScheme, formValidationScheme } from './formScheme';
+import Link from 'next/link';
 
-interface FormProps {
-  name: string;
-  tags: string;
-  file: any;
-}
-const formScheme: FormProps = { name: '', tags: '', file: '' }
+
 
 export default function FormPage() {
 
-  const [loading, setLoading] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string>();
   const service = useImageService();
+  const [loading, setLoading] = useState<boolean>(false);
+  const notification = useNotification();
 
 
   const formik = useFormik<FormProps>({
     initialValues: formScheme,
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
+    validationSchema: formValidationScheme,
   })
 
   async function handleSubmit(data: FormProps) {
@@ -36,6 +34,8 @@ export default function FormPage() {
     formik.resetForm();
     setImagePreview('')
     setLoading(false)
+
+    notification.notify('Upload send successfully!', 'success')
   }
 
   function onFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
